@@ -96,7 +96,7 @@
   | Operators                             | Associativity |
   | -------------                         | ----------    |
   | ()  [] -> .                           | L -> R        |
-  | ! ~ ++ -- + - * & (type) sizeof       | R -> L        |
+u | ! ~ ++ -- + - * & (type) sizeof       | R -> L        |
   | * / %                                 | L -> R        |
   | + -                                   | L -> R        |
   | << >>                                 | L -> R        |
