@@ -152,4 +152,139 @@
     
     O(n * loglog n)    
     ```
- 
+
+#### Analysis of Recursive algo  
+```
+T(n) = c + 2 * T(n/2)
+```
+- Methods
+  - Back Substitution (somewhat slow)
+    ```
+    Ex1:
+    ---
+    T(n - 1) = 1 + T(n - 2)
+    T(n - 2) = 1 + T(n - 3)
+    ...
+    T(n) = K + T(n-k)
+    k = n - O(n)
+    
+    Ex2:
+    ---
+    T(n) = n + T(n-1);
+         = n + (n - 1) + ...... + 1
+         = n(n + 1) / 2
+         = O(n ^ 2)
+    ```
+    
+  - Recursion Tree Method
+    ```
+    T(n) = 2T(n/2) + c; n > 1
+    
+              T(n)
+            /   |  \
+         T(n/2) c  T(n/2)   -- c
+         / | \
+    T(n/4) c T(n/4) ...     -- 2c
+    .....                   -- 4c
+    
+    T(n) = c * (1 + 2 + 4 + 8 + ..... + n)
+         = c * ((2 ^ k+1 - 1) / (2 - 1))
+         = c ( 2 ^ k+1 -1)
+         = c ( 2 ^ (log n + 1) - 1)
+         = c ( 2n - 1 )
+         = O(n)
+    ```
+
+- **How to compare two functions**  
+    - **2 ^ n - n ^ 2 - Which is larger**   
+      ```
+      // Apply log on both side
+      log 2 ^ n  ---  log n ^ 2
+      n log 2    ---  2 log n
+      n          ---  2 log n
+      2 ^ 100    ---  2 log 2 ^ 100
+      2 ^ 100    ---  2 * 100
+      So 2 ^ n is bigger
+      ```
+    - **n ^ 2 -- n log n - which is larger**   
+      ```
+      // Cancel out common terms
+      n ^ 2  ---  n log n
+      n      ---  log n
+      So n ^ 2 is larger 
+      ``` 
+    - **n -- (log n) ^ 100 - which is larger**  
+      ```
+      n             ---     (log n) ^ 100
+      log n         ---     100 * log log n
+      log 2 ^ 128   ---     100 * log log 2 ^ 128
+      128           ---     100 * log 128
+      128           ---     100 * 7 
+      so (log n) ^ 100 is larger
+      
+      But if n = 2 ^ 1024
+      1024  ---     1000 // n is larger
+      After some values of n - n is always larger
+      ```
+
+    - **n ^ log n -- n log n - which one is larger**  
+      ```
+      2 ^ 1024 ^ 1024 =  2 ^ 1024 * 1024
+      // OR
+      // Apply log
+      log n log n -- log n + log log n
+      // n - 2 ^ 1024
+      1024 * 1024 -- 1024 + 10
+      ```    
+
+- **Masters theorem**  
+  ```
+  T(n) = a T(n/b) + θ((n ^ k) * log^p n)
+  a >= 1, b > 1, k >=0 and p is a real number
+  
+  1. if a > b^k - T(n) = θ(n^log (base b) a)
+  2. if a = b^k
+      i. if p > -1, then T(n) = θ(n^log (base b) a * log^(p+1) n)
+     ii. if p = -1, then T(n) = θ(n^log (base b) a * loglog n)
+    iii. if p < -1, then T(n) = θ(n^log (base b) a)
+  3. if a < b^k
+    i. if p >= 0, then T(n) = θ(n^k log^p n)
+   ii. if p < 0, then T(n) = O(n^k) 
+  ```
+  
+  - Ex1  
+    ```
+    T(n) = 3 T(n/2) + n^2
+    a = 3, b = 2, k = 2, p = 0
+    3 < 2^2
+    a < b^k
+    T(n) = θ(n^2 log^0 n)
+         = θ(n^2)
+    ```
+  
+  - Ex2  
+    ```
+    T(n) = 4T(n/2) + n^2
+    a = 4, b = 2, k = 2, p = 0
+    a = b^k
+    T(n) = θ(n^(log4) * log^1 n)
+    T(n) = θ(n^ log n)
+    ```
+  
+  - Ex3  
+    ```
+    T(n) = T(n/2) + n^2
+    a = 1, b = 2, k = 2, p = 0
+    a < b^k
+    T(n) = θ(n^2 * log^0 n)
+    T(n) = θ(n^2)
+    ```
+  
+  - Ex4  
+    ```
+    T(n) = 2^n T(n/2) + n^n
+    a has to be constant
+    So, master's theorem is not applicable here
+    ```
+
+-  
