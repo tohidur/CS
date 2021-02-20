@@ -187,7 +187,7 @@ T(n) = c + 2 * T(n/2)
     T(n/4) c T(n/4) ...     -- 2c
     .....                   -- 4c
     
-    T(n) = c * (1 + 2 + 4 + 8 + ..... + n)
+    T(n) = c * (1 + 2 + 4 + 8 + ..... + 2^k)
          = c * ((2 ^ k+1 - 1) / (2 - 1))
          = c ( 2 ^ k+1 -1)
          = c ( 2 ^ (log n + 1) - 1)
@@ -287,4 +287,48 @@ T(n) = c + 2 * T(n/2)
     So, master's theorem is not applicable here
     ```
 
--  
+#### Amortized Analysis  
+Some times for any DS the first time operation is costly but if you perform more operations then
+it's not that costly. So in that situation we perform a series of oprations and then try to
+find out the average. - Amortized Analysis
+
+- Used to analyse the time complexity of hash tables, splay trees, disjoint sets
+- Method used for this analysis
+  - Aggregate method
+  - Accounting method
+  - Potential method
+
+- **Aggregate method**  
+  - Hash table insertions
+    - Increase the time of of table whenever it becomes full
+      - Allocate memory for a large table of size double the old table
+      - copy the contents of old table to new table
+      - free the old table
+
+  - **Normal time complexity**  
+    ```
+    Initally table is empty - size 0
+    Insert 1 (overflow) - [1]  // cost 1
+    Insert 2 (overflow) - [1, 2]  // cost 2
+    Insert 3 (overflow) - [1, 2, 3, ] // cost 3
+    Insert 4            - [1, 2, 3, 4] // cost 1
+    Insert 5 (overflow) - [1, 2, 3, 4, 5, , , ]  // cost 5
+    6                   - ... // cost 1
+    7                   - ... // cost 1
+    8                   - ... // cost 1
+    9 (overflow)        - 
+    
+    T(n) = O(n)
+    So for n elements (say) - O(n^2)  // Upper bound
+    ```
+  
+  - **Amortized analysis**  
+    ```
+    (1 + 2 + 3 + 1 + 5 + 1 + 1 + 1 + 9 + 1 + ...) / n
+    
+    // cost of insertion of all step is 1 => (1 + 1 + 1 + .. ) = n
+    // and then all allocation would be (1 + 2 + 4 + 8 + .... + 2^k) =  (2 ^ k+1 - 1) / (2 - 1) = n
+    (n + 2n) / n
+    O(1)  // constant time
+    ```
+    
