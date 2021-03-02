@@ -41,7 +41,7 @@ Huffman(c)
 
     for i = 1 to n - 1
         allocate a new node z
-        z.left = x = ExtractMin(Q); // O(log n)
+        z.left = x = ExtractMin(Q); // O(log n) // Smaller value always have to be on left
         z.right = y = ExtractMin(Q); // O(log n)
         z.freq = x.freq + y.freq;
         Insert(Q, z);  // Insert in min heap // O(log n)
