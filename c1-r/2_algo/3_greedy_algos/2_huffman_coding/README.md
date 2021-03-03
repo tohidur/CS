@@ -90,3 +90,5 @@ Huffman(c)
 
     - This question can be asked in another way
       - How can you build a tree so that I can decrease the weight of the external path length?
+      - **Optimal merge pattern** is also exactly same - Weighted external path length to find out
+        minimum record movements.
