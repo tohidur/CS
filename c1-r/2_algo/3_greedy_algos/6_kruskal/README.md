@@ -27,3 +27,29 @@ Here, all the nodes are already there, we will add new next minimum edge connect
   d. e is present in every minimum spanning tree
   
   - Ans: d
+
+#### Kruskal Algo - With Disjoint set
+```
+MST_Kruskal(G, W)  // W - weight matrix
+{
+    A <- ∅  // Initally minimum spanning tree does not contain any edges
+            // O(1)
+    for each vertex v ∈ V  // O(V)
+        create-set(v)  // Will create a disjoint set (tree)
+                       // O(1)
+    
+    E' <- Sort the edges of G in non-decreasing order by weight W  // O (E log E)
+
+    for each edge (u,v) ∈ E'  // O(E)
+        if Find_set(u) != Find_Set(v)     |
+            A <- A ∪ {(u.v)}              | O(1)
+            union(u.v)                    |
+}
+
+T(n) = O(E log E)
+     = O(E log V^2)
+     = O(2 E log V)
+     = O(E log V)
+
+Space complexity = O(V)  // To create disjoint set
+```
