@@ -289,7 +289,7 @@ T(n) = c + 2 * T(n/2)
 
 #### Amortized Analysis  
 Some times for any DS the first time operation is costly but if you perform more operations then
-it's not that costly. So in that situation we perform a series of oprations and then try to
+it's not that costly. So in that situation we perform a series of operations and then try to
 find out the average. - Amortized Analysis
 
 - Used to analyse the time complexity of hash tables, splay trees, disjoint sets
