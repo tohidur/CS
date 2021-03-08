@@ -139,3 +139,21 @@ si ∩ sj = ∅ , i != j
     O(u + f) - Amortised for u union and f find set.
     
     So, for one operation - O(u + f) / (u + f) = O(1)
+
+
+- Connected Components using Disjoint sets  
+
+  Given a undirected graph G = (V, E) find the connected component in the Graph.  
+  ```c
+  connected_component(G)
+  {
+    for each vertex v in V  // O(V)
+        create_set(v)
+    for each edge (u,v) in E
+        if find_set(u) != find_set(v)
+            union(u, v)  // O(E) - amortised using disjoint set - O(1)
+  }
+  
+  // T(n) = O(E)
+  ```
+
