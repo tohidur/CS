@@ -88,6 +88,10 @@ if A(1..n) - n(n+1)/2 subproblems - O(n^2)
 
 - **Algo**  
 ```
+If A1(p0 x p1), A2(p1 x p2), A3(p2 x p3), A4(p3 x p4)
+then p would be an array - [p0, p1, p2, p3, p4]
+
+
 Matix_Chain(p) {
     n = p.length - 1;
     let m[1...n, 1...n] and s[1...n-1, 2.....n] be new tables
@@ -111,4 +115,40 @@ Uniqueue subproblems - O(n^2)
 Entries of each subproblem to process - O(n)
 
 T(n) = O(n^3)
+Space = O(n^2)  // To store subproblem results on table
+```
+
+#### Top-Down approach - Memoization
+- **Algo**  
+```
+Memoized_Matrix_Chain(p)
+{
+    n = p.length - 1
+    let m[1...n, 1....n] be a new table
+    for i = 1 to n
+        for j = 1 to n
+            m[i,j] = infinity
+
+    return Lookup_Chain(m, p, 1, n)
+}
+
+Lookup_Chain(m, p, i, j)
+{
+    if m[i, j] < infinity
+        return m[i, j]
+
+    if i == j
+        m[i, j] = 0
+    else for k = i to j - 1
+        q = Lookup_Chain(m, p, i, k)
+                + Lookup_Chain(m, p, k+1, j)
+                + p(i-1) * p(k) * p(j)
+        if q < m[i,j]
+            m[i, j] = q
+
+    return m[i, j]
+}
+
+T(n) = (n^3)
+S(n) = O(n^2) + O(n) = O(n^2)
 ```
