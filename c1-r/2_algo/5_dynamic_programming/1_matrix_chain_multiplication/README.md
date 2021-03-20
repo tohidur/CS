@@ -71,3 +71,44 @@
       m[1,1] m[2,4]     m[1,2] m[3,4]       m[1,3] m[4,4]
         
   ```
+
+#### Bottom-Up approach  
+```
+A(1, 4)
+Subproblems
+(1,1), (2, 2), (3, 3), (4, 4)       4 - of size 1
+(1,2), (2, 3), (3, 4)               3 - of size 2
+(1,3), (2, 4)                       2 - of size 3
+(1, 4)                              1 - of size 1
+
+So, total - (4 + 3 + 2 + 1)
+
+if A(1..n) - n(n+1)/2 subproblems - O(n^2)
+```
+
+- **Algo**  
+```
+Matix_Chain(p) {
+    n = p.length - 1;
+    let m[1...n, 1...n] and s[1...n-1, 2.....n] be new tables
+    for i = 1 to n
+        m[i,i] = 0
+
+    for l = 2 to n      // l is the chain length
+        for i = 1 to n-l+1
+            j = i + l - 1
+            m[i, j] = infinity
+            for k = i to j - 1
+                q = m[i, j] + m[k+1, j] + p(i-1)
+                if q < m[i, j]
+                    m[i, j] = q  // update new min cost value on table
+                    s[i, j] = k  // update the split point
+    
+    return m and s
+}
+
+Uniqueue subproblems - O(n^2)
+Entries of each subproblem to process - O(n)
+
+T(n) = O(n^3)
+```
