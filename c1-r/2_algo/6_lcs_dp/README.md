@@ -94,3 +94,27 @@ Subsequence should be in increase order - but they need not be contiguous.
     
   - Time and Space Complexity   
     O(m * n) - (Way less than O (2 ^ (n+m)))
+
+
+### Algo
+```
+LCS(X,Y)
+{
+    m = X.length;
+    n = Y.length;
+
+    let C[1....m, 1.....n] be a new table
+    for i=1 to m
+        C[i,0] = 0
+    for j=0 to n
+        C[0,j] = 0
+
+    for i = 1 to m
+        for j = 1 to n
+            if xi == yj
+                c[i,j] = c[i-1, j-1] + 1
+            else
+                c[i,j] = max(c[i-1,j], c[i,j-1])
+    return c
+}
+```
