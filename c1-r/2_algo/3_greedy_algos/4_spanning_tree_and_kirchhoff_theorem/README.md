@@ -100,3 +100,4 @@ How many spanning trees are possible if the graph is not complete (labeled graph
 - **Notes**  
   - In a complete graph degree of each node would be - `n - 1`.
   - 
+ 
