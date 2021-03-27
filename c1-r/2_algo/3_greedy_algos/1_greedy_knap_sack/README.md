@@ -28,7 +28,7 @@
     sort objects in non increasing order of p/w
 
     for i = 1 to n from sorted list  // Instead of this you can use max heap and deletion
-        if (m > 0 ** wi <= m)
+        if (m > 0 && wi <= m)
             m = m - wi;
             p = p + pi;
         else
@@ -39,3 +39,6 @@
   
   // Time complexity - O(n log n)
   ```
+
+- **Note**  
+  Greedy only works with fractional knapsack not 0/1 knapsack.
