@@ -95,3 +95,16 @@
   - Given pre-order and in-order - unique binary tree is possible
   
   - Given post-order and in-order - unique binary tree is possible
+
+
+### Construction of unique binary tree using in-order and pre-order
+- Pre-order = ABC
+- In-order = BAC
+
+- First element of Pre-order is root
+
+- And once you have root, from in-order left of that root element is
+  left sub-tree and right of that root element is right sub-tree.
+
+- In case post-order root is printed at the end. So, we have to come from right
+  towards left.
