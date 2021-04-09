@@ -187,3 +187,21 @@
     return 1 + (l > r) ? l : r;
   }
   ```
+  
+### Binary Search Tree
+
+- All the elements on left sub-tree will be less or equal
+- And all the elements on right sub-tree will be greater or equal
+- Traversing a BST in-order would give you elements in asc order.
+
+#### Deleting a node from binary search tree
+- Delete a leaf
+  - Just delete
+- Delete a non leaf with one child
+  - Connect the child to it's parent
+- Delete a non leaf with two child 
+  1. Go to right sub tree and take the least element and put it in the
+     place of deleted element. This least element is in-order successor.
+
+  2. OR, go to the right sub-tree and take the greatest element.
+     And replace it with the deleted element. in-order predecessor.
