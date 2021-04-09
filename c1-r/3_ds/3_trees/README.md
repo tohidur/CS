@@ -68,3 +68,30 @@
 
 - If you start with A then 1st level nodes will called A then second level
   will call B then third level will call A and so on.
+
+### Number of binary trees possible
+- **Unlabeled**  
+  - 1 node = 1 tree
+  - 2 node = 2 tree
+  - 3 node = 5 tree
+  - n node = `(2n C n) / (n+1)`
+
+- **Labeled**  
+  - n node = `( (2n C n) / (n+1) ) * n!`
+ 
+- **All the BST with 3 nodes A, B, C which have preorder - ABC**
+  - No. of BST - `( (2n C n) / (n+1) ) * n!` - 30
+  - No. of BST unlabeled - `(2n C n) / (n+1)` - 5
+  - Each tree can have only one preorder - ABC
+
+- **Properties**  
+  - n nodes - pre-order - `( (2n C n) / (n+1) )` binary tree.  
+    Can't find any unique binary tree.
+
+  - Given pre-order and post-order - more than one binary tree is possible.
+  
+  - Given pre-order, post-order and in-order we might not always get a **Unique binary tree**.
+
+  - Given pre-order and in-order - unique binary tree is possible
+  
+  - Given post-order and in-order - unique binary tree is possible
