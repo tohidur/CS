@@ -108,3 +108,82 @@
 
 - In case post-order root is printed at the end. So, we have to come from right
   towards left.
+
+
+### Recursive program to count the number of nodes
+- **Equation**  
+  ```
+  Number of nodes = NN
+  
+  NN(T) = 1 + NN(Left) + NN(Right)  // If T is NULL return 0
+  ```
+
+- **Algo**
+  ```c
+  int NN(struct node *t)
+  {
+    if (t == NULL)
+      return 0;
+    return (1 + NN(t->left) + NN(t->right));
+  }
+  ```
+
+### Recursive program to find out number of leaves in binary tree
+- **Equation**  
+  ```
+  NL(t) = 1;  // T is leaf
+        = NL(left) + NL(right)  // otherwise
+  ```
+- **Algo**  
+  ```c
+  int NL(struct node *t)
+  {
+    if (t == NULL)
+      return 0;
+
+    if (t->left == NULL and t->right == NULL)
+      return 1;
+    
+    return NL(t->left) + NL(t->right);  
+  } 
+  ```
+
+### Recursive program to find the full nodes
+- **Equation**  
+  ```
+  FN(T) = 0; // T = NULL
+        = 0; // T is leaf
+        = FN(left) + FN(right) + 1  // if both left and right
+        = FN(left) + FN(right)  // if one of left and right not present
+  ```
+
+- **Algo**  
+  ```c
+  int FN(struct node *t)
+  {
+    if(!t) return 0;
+    if (!t->left && !t->right) return 0;
+
+    return FN(t->left) + FN(t->right) + (t->left && t->right) ? 1 : 0;
+  }
+  ```
+  
+### Recursive program to find height of the tree
+- **Equation**  
+  ```
+  H(T) = 0;  // T is empty
+       = 0;  // T is leaf
+       = 1 + max( HT(left) + HT(right) );
+  ```
+
+- **Algo**  
+  ```c
+  int H(struct node *t)
+  {
+    if(!t) return 0;
+    if (!t->left && !t->right) return 0;
+    int l = HT(t->left);
+    int r = HT(t->right);
+    return 1 + (l > r) ? l : r;
+  }
+  ```
