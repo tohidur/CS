@@ -205,3 +205,31 @@
 
   2. OR, go to the right sub-tree and take the greatest element.
      And replace it with the deleted element. in-order predecessor.
+
+### Questions
+#### Leaves in complete n-ary tree
+```
+A complete n-ary tree is one in which every node has 0 or n sons.
+If x is the number of internal nodes of a complete n-ary tree,
+then number of leaves in it is?
+```
+
+```
+For 1 internal node - n children
+For 2 internal nodes - n + (n-1) = 2n - 1 children
+For 3 internal nodes - n + n + (n-2) = 3n - 2 children
+For x internal nodes - n + n + (n-x-1) = xn - x - 1
+
+leaf nodes with x internal nodes = xn - (x - 1)
+                                 = x(n - 1) + 1
+```
+
+#### Leaf nodes in complete n-ary tree with k nodes.
+- Based on previous example - Leaves(L) = Internal(I) * (n - 1) + 1
+- L + I = k
+- I(n-1) - L = -1
+- I + I(n-1) = k-1
+- I = k-1/n
+- L = k - I = k - (k-1)/n
+- L = nk - k + 1/n
+- L = (n-1) * k + 1 / n
