@@ -233,3 +233,79 @@ leaf nodes with x internal nodes = xn - (x - 1)
 - L = k - I = k - (k-1)/n
 - L = nk - k + 1/n
 - L = (n-1) * k + 1 / n
+
+### Expression trees
+- For abstract syntax tree in compiler design
+- a + b
+  ```
+        +
+      /   \
+    a       b
+  
+  Pre-Order: +ab
+  In-Order : a+b
+  Post-Order: ab+
+  ```
+- a + b * c
+  ```
+        +
+      /   \
+    a       *
+          /   \
+        b       c
+  
+  Pre-Order: +a*bc
+  In-Order: a+b*c+
+  Post-Order: abc*+
+  ```
+- For unary expression a bit tricky
+- -a
+  ```
+    -
+     \
+       a
+  
+  In-Order: -a
+  // In-Order should match with given expression
+  ```
+
+- log a!
+  ```
+  log
+     \
+      !
+    /
+  a
+  
+  In-Order: log a!
+  ```
+
+### Various Tree representations
+- **Left child right sibling representation (LCRS)**  
+
+  If we have 10 children and one node can have less than 10 children
+  at a time then defining 10 pointers is a waste.
+  So every node will have left child and right sibling pointers.
+  - Generally for n-ary tree.
+  ```
+             []
+            /
+           /
+          [] -> [] -> []
+         /
+        /
+       [] -> [] -> []
+  ``` 
+
+- **Array Representation - Binary tree**  
+  - Root - i index
+  - left - 2i  (left shift)
+  - right - 2i + 1 (left shift and then OR it with 1)
+  - parent - i/2  (right shift by 1)
+  - Heaps are perfectly suitable for this (In most other there is space wastage).
+
+- **Nested Form**  
+  ```
+  L-Root-R = (b a c)
+  Root-L-R = a (bde) (cfg)
+  ```
