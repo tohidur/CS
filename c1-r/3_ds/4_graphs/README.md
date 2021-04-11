@@ -105,3 +105,21 @@ BFT(G, n)
 }
 ```
 Complexity is same as BFS
+
+#### DFS
+- **Algo**  
+  ```c
+  DFS(v)
+  {
+    visited[v] = 1;
+    for each vertex w adj to v do
+    {
+      if ( visited[w] == 0) then
+        DFS(w);
+    }
+  }
+  
+  // S(n) = O(V)(for visited init) + O(V) (for recursion stack)
+  // T(n) = O(V + E) // for linked list
+  // T(n) = O(V^2) // for adjacency matrix
+  ```
