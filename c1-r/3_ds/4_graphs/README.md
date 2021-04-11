@@ -123,3 +123,48 @@ Complexity is same as BFS
   // T(n) = O(V + E) // for linked list
   // T(n) = O(V^2) // for adjacency matrix
   ```
+
+
+### Topological Sort
+A directed acyclic graph
+We need to find out topological order when all the dependencies are met
+
+- **Algo - 1**  
+  - Step 1  
+    Identify vertices that have no incoming edge.
+    - O(V) for one vertex to find this out.
+    - O(V ^ 2) for V vertices.
+  
+  - Step 2
+    Delete this vertex of in degree 0 and all it's outgoing
+    edges from the graph. Place it in the output
+    - O(E)
+    
+  - Repeat Step 1 and Step 2 until the graph is empty
+
+  - Overall complexity - O(V^2 + E)
+ 
+- **Algo - 2**
+  ```
+  [v1] -> [v3] -> [v4]
+  [v2] -> [v1]
+  [v3] -> [v6]
+  [v4] -> [v3] -> [v6]
+  [v5] -> [v1]
+  [v6]
+  ```
+  - We are going to maintain a separate array. To know the in-degree of vertices.
+    ```
+    [ 2 | 0 | 2 | 1 | 0 | 2 ]
+      1   2   3   4   5   6
+    ```
+    - Initialize time = O(V + E)
+    - To find out vertices with degree 0 - O(V) for v vertices - O(V^2)
+    - Once one vertex is deleted we can mark that array cell to -> -1
+    - To reduce this time complexity when we are reducing in-degree if
+      It's getting 0 then we can add that to a queue.
+      So, Instead of searching for 0 in-degree vertex in array we can
+      just pop an element from the queue - O(1) time.  
+      So, time complexity is reduced to O(V) from O(V^2).
+      
+  - Time complexity = O(V + E) instead of O(V ^ 2 + E) in algo-1.
