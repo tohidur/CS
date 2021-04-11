@@ -38,3 +38,70 @@ There are two popular representation of graphs
   
   S(G) = O(V + E)
   ```
+
+### Introduction of BFS and DFS
+Searching nodes in the Graph (It's not traversing because we may not reach
+all nodes in the graph if it's disconnected.)
+To search we use two terminology
+
+- Visited - To visit to node.  
+  We use an array to keep track of visited nodes with 0/1 values.
+ 
+- Explore - To visit the node and also visit all it's adjacent nodes.
+  - BFS - We use an Queue to keep track of unexplored nodes.
+  - DFS - We use an Stack to keep track of unexplored nodes.
+
+The space complexity - O(n) for array and nearly O(n) for queue/stack.
+
+
+#### BFS
+- **Algo**  
+  ```c
+  BFS(v)  // The search starts from vertex v
+  // The graph 'G' and array visited[] are global;
+  // visited[] is initialized to '0'
+  {
+    u = v;
+    visited[v] = 1;
+
+    repeat
+    {
+      for all vertices w adj to u do
+      {
+        if (visited[w] == 0)
+        {
+          add w to q;
+          visited[w] = 1;
+        }
+      }
+      If q is empty then return;
+      Delete the next element, u from q;
+    }
+  }
+  ```
+- **Complexities**  
+  - Space - O(V) (for visited array for for queue)
+  - Time
+    - Linked List Repr 
+      - O(V) (for visited init) + O(2E) (for visiting linked lists)
+      - O(V + E)
+    - Adjacency Matrix Repr
+      - O(V) for visited array init
+      - O(V) for check visited array for V vertics - O(V^2)
+      - O(V^2) + O(V) = O(V^2)
+  
+#### Breadth First Traversal using BFS
+Traversal - To visited every node of every component of the entire graph.
+Search - To visited reachable nodes of a graph.
+
+- **Algo**  
+```c
+BFT(G, n)
+{
+  for i = 1 to n do
+    visited[i] = 0;
+  for i = 1 to n do
+    if( visited[i] = 0 ) then BFS(i);
+}
+```
+Complexity is same as BFS
