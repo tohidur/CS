@@ -47,7 +47,34 @@ Here - mod 10 can be hash function.
     - Double hashing
     
     We can utilize the space better with this open addressing compare to chaining.
-    And when required we can increase the size of the hash DS.
+    And when required we can increase the size of the hash table.
 
   Chaining is better if you want to - Insert, Delete and Search
   Open addressing is better if if you just want to - Insert and Search. 
+
+### Chaining
+```
+                [ ]
+T[h(k)] ---->   [ ] -> [ | ] -> [ | ]
+                [ ] 
+```
+- Insertion - Insert in the beginning of list - O(1)
+- Searching  
+  - Worst case - O(n) time.  
+    If all elements are mapped to 1 list.
+  
+  - But if you use uniform hash function then  
+    each slot might get `n/m` elements.
+    Average Search - `θ(1 + n/m)` time.  
+    
+    This n/m is called load factor - α. So, θ(1 + α).  
+    Now if n = k*m (k is some constant).  
+    α = n/m --> α = km/m --> α = k. A constant.  
+    Then you can say constant time is taken to Search elements.  
+
+- Average deletion will also be of constant similar to search.
+
+- The advantage of Chaining of deletion. It will take on Average constant time.  
+  With open-addressing deleting one element leads to re-arranging other elements.  
+
+- Disadvantage of this method is Pointers. Extra space.
