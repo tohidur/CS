@@ -78,3 +78,62 @@ T[h(k)] ---->   [ ] -> [ | ] -> [ | ]
   With open-addressing deleting one element leads to re-arranging other elements.  
 
 - Disadvantage of this method is Pointers. Extra space.
+
+### Open Addressing
+It's also called Closed Hashing.  
+Doesn't store elements outside hash table. All elements are stored inside the
+table itself.
+
+Load factor α = n/m.  
+n -> number of elements stored.  
+m -> total size of hash table.  
+
+For open addressing, 0 <= α <= 1.  
+Unlike chaining where load factor can be anything.  
+
+For collision second time probing is required. With minor modification to hash
+function. Here in second time we will use collision number with the key to
+generate new key.
+
+```
+h: U -> {0, 1, ... m-1}
+h: (U X {0, 1, 2, 3, ... m-1}) -> {0, 1, 2, ... m-1}  // Probe sequence
+```
+
+Probe Sequence:
+To insert we will follow a sequence of examinations. If I find any empty
+cell in this sequence then I am going to insert there. If not then declare
+that entire table is full and I will not be able to insert it.
+
+Worst time to search an element - O(m)
+
+Flow
+- Inserting - k1 key
+  - First collision and key is not k1 use collision number and try re-probing
+  - Keep on doing it until you find an empty space.
+
+- Searching
+  - Same as Inserting
+  - Keep on doing it until you find key - k1
+  - Or you get a NULL entry. That means the key is not present in the table.
+
+- Deleting
+  - If you delete and make the entry as NULL.
+  - In case of collision you will find null and think that key is not present.
+    Even though it might have present in the next probing.
+  - So, one solution is to replace it with some special char instead of NULL in
+    case of deletion.
+  - Now when searching if you find that special char you will keep on finding
+    the key using collision number.
+  - In case of Insertion if you find that special key you insert there.
+
+- Problem with this special char deletion
+  - Let's say most of the entry in hash table is deleted except k1.
+  - There are bunch of collisions happened before probing k1.
+  - So now even though most the table entries are empty you have to go
+    through all the collisions before you can find k1.
+  - That is why it's better to use Chaining if deletion is involved.
+
+- Advantage
+  - We are not wasting space. And in case table gets full we can increase
+    table size. And bigger table size means less collisions.
