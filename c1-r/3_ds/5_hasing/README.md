@@ -188,4 +188,20 @@ can declare the there is no empty space left and we can't probe that element.
 It's difficult to come up with proper c1 and c2 and m values. So people
 doesn't usually go with this quadratic probing.
 
-It solves Primary Clustering problem but no Secondary clustering problem.
+It solves Primary Clustering problem but no Secondary clustering problem.  
+Number of probe sequence are - m.
+
+
+#### Double Hashing
+`h'(k) = (h1(k) + i * h2(k)) mod m`
+
+Probe sequence possible - m ^ 2.  
+h1(k) would give you m sequence and h2(k) would give you m sequence.
+
+Now you need to be sure that if you going to probe m times then
+all m slots needs to be covered.  
+
+You can do that if make sure that h2(k) and m are relatively prime.  
+There are two ways you can do it.
+- Make sure h2(k) will always give odd number and m = 2^k.
+- m would always be a prime number and h2(k) value would be < m
