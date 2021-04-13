@@ -65,7 +65,9 @@ si ∩ sj = ∅ , i != j
   - _Create Set(x)_  
     Representative. We chose an element to represent the set
   - _Union(x, y)_  
+    - Unites the disjoint sets that contain x and y, say sx and sy, into a new set sx U sy.
   - _Find_Set(i)_  
+    - Returns a pointer to the representative of the set containing x.
 
 - **Linked-List implementation of Disjoint set**  
   - Each element there will be structure/object 
@@ -76,7 +78,7 @@ si ∩ sj = ∅ , i != j
   - There will be index object/structure with 2 fields
     - head - will point to first element
     - tail will point to last element
-  - You can't take any element as representative. Let's say 1st element
+  - You can take any element as representative. Let's say 1st element
 
 - **Time Complexities - Of disjoint set operations (LinkedList)**
   - _Create_Set_  
@@ -90,6 +92,26 @@ si ∩ sj = ∅ , i != j
 
   - _Union(x, y)_  
     - O(n)
+    - You choose one of them to append to other one. It's better if you choose the smaller one.
+
+#### Amortized analysis  of disjoint sets using Linked List representation
+To add n elements we will create n different sets
+and then perform union n-1 times to get 1 set with n different elements.
+
+n create operations + (n-1) union operations - (2n - 1) operations.
+
+n create operations - O(n)
+
+Worst case kind of union - take bigger set to replace.
+U(x2, x1) - cost 1
+U(x3, x2) - cost 2
+......
+U(xn, x(n-1)) - cost n
+---
+n(n-1)/2 = O(n^2)
+
+Total T(n) = O(n^2) + O(n) = O(n^2)
+Amortized = O(n^2) / n = O(n)
 
 #### Disjoint set - using forest
 - A faster representation of disjoint sets by rooted tree
@@ -102,34 +124,44 @@ si ∩ sj = ∅ , i != j
 - Union - O(1)
 
 
-- Union by rank   
+- **Union by rank**   
+  Let's try to improve the time of find set - O(d).  
   Always take smaller set and point to bigger set for Union
+
+  If the follow this union rule then based one dept there is minimum number of nodes will get. Maximum can be anything.
+  But minimum number of nodes required to have that much depth. See below.
 
   Dept | Minimum no of nodes in tree after union
   0    | 1
   1    | 2
   2    | 4
+  3    | 8
   ........
   d    | 2^d
   
   You should at least have n node in order to make a tree of depth log n
   Or
-  The maximum
+  The maximum depth possible using n nodes is - log n
+  
+  So, worst case time for find is - O(d) -> O(log n)
 
-- Path Compression   
-  - Whenever we perform find(x), make every node visited in the pat point to the root. Next time
-    when we perform find. it takes constant time
+- **Path Compression**  
+  To reduce the height even more than - log n
+
+  - Whenever we perform find(x), make every node visited in the pat point to the root.  
+    Next time when we perform find, it takes constant time.
   
   - If we don't do find(x) there is no need to compress the path
 
-- Time complexity using Heuristic  
+- **Time complexity using Heuristic**  
   - Union - O(1)
 
   - Find Operation  
     - O(m log n) - using union by rank for a sequence of m distinct operation
-    - O(n + f(1 + log n base (2+(f/n)))) - using path compression alone
+    - O(n + f(1 + log n base (2+(f/n)))) - using path compression alone.  
+      for a sequence of n create_set operations, and hence n-1 union operations followed by f find_set operations.
 
-  - O(u + f α (f + u, u)) using both union by rank and path compression for a sequence of u union and
+  - O(u + f * α(f + u, u)) using both union by rank and path compression for a sequence of u union and
     f find set operations
     α - is a very slowly growing function
       - Inverse Ackermann function

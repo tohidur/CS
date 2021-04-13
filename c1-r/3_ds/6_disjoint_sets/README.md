@@ -1,0 +1,1 @@
+Check - `2_algo/3_greedy_algos/6_kruskal_and_disjoin_sets`
