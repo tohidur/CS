@@ -137,3 +137,40 @@ Flow
 - Advantage
   - We are not wasting space. And in case table gets full we can increase
     table size. And bigger table size means less collisions.
+
+
+#### Linear Probing
+It has two hash functions.  
+
+Hashing function = `h: U -> {0, 1, ... m-1}`  
+Probing Hash function = `h'(k, i) = (h(k) + i) mod m` , i - is collision number.
+
+It's linear because if we get a collision on a position say - `a`.
+Then next element would be `a+1`, `a+2` and so on.
+
+- **How many prob sequences?**  
+  It depends on from where we are starting to probe.  
+  - 0 - {0, 1, 2, ... m-1}
+  - 1 - {1, 2, 3, ..., m-1, 0}
+  - 2 - {2, 3, 4, ..., m-1, 0, 1}
+  
+  So there are m different probe sequence possible
+
+- **Problems**  
+  - **Secondary Clustering**  
+    If two have same initial probe numbers then they follow the same
+    probe sequence.
+  
+  - **Primary Clustering**   
+    There would be a build up of sequence, a continuous run of probed elements.  
+    So, with Linear probing many elements will fall together in a continuous run
+    then there will be some gap and then again a continuous run of some elements
+    in the hash table.
+    
+    In uniform hashing probability of a slot is 1/m.  
+    But here the probability of the slot after continuous run is (i+1)/m.
+    Considering i is the number of elements in that continuous run.
+    So, it's much higher than 1/m.
+
+- Worst T(n) -> O(n)
+- On Average T(n) -> Constant. // Approx - O(2.5)
