@@ -174,3 +174,18 @@ Then next element would be `a+1`, `a+2` and so on.
 
 - Worst T(n) -> O(n)
 - On Average T(n) -> Constant. // Approx - O(2.5)
+
+
+#### Quadratic Probing
+Probing hash function - `h'(k, i) = (h(k) + c1 * i + c2 * i^2) mod m`  
+
+So, the next probe position would not be linear it would be quadratic.  
+
+But we need to careful here when choosing c1 and c2 value so that.  
+m successive probing should cover all the slots on hash table so that we
+can declare the there is no empty space left and we can't probe that element.
+
+It's difficult to come up with proper c1 and c2 and m values. So people
+doesn't usually go with this quadratic probing.
+
+It solves Primary Clustering problem but no Secondary clustering problem.
