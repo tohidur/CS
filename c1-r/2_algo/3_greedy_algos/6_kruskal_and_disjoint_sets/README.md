@@ -172,8 +172,38 @@ Amortized = O(n^2) / n = O(n)
     
     So, for one operation - O(u + f) / (u + f) = O(1)
 
+- **Kruskal's algorithm using Disjoint sets**  
+  Given a connected, weighted undirected graph, find the Minimum spanning tree
+ 
+  ```c
+  MST_Kruskal(G, W)
+  {
+    A <- ∅  // O(1)
+  
+    for each vertex v in V   // O(V)
+        create_set(v)
+  
+    E' - sort the edges of G in non-decreasing order by weight w  // Best sorting algo - O(E log E)
+  
+    for each edge (u, v) in E'
+        if find_set(u) != find_set(v)
+            A <- A U {(u, v)}
+            union(u, v)
+  }
+  ``` 
+  
+  - Complexity  
+    - Space - O(V) for create set
+    - Time  
+      - O(E log E)
+      - O(E log V^2)
+      - O(E log V)
+      - So, O(E log E) or O(E log V)
 
-- Connected Components using Disjoint sets  
+- **Connected Components using Disjoint sets**  
+
+  If can figure out connected components by traversing but if the graph is dynamic then connected
+  disjoint set is useful, traversing fails here.
 
   Given a undirected graph G = (V, E) find the connected component in the Graph.  
   ```c
@@ -187,5 +217,7 @@ Amortized = O(n^2) / n = O(n)
   }
   
   // T(n) = O(E)
+  // S(n) = O(V)
   ```
 
+  So at the end the number of connected components would be equal to the number of disjoint sets.
