@@ -25,3 +25,7 @@ Examples
 - Ex1:  
   Let R = { (x, y) ∈ Z x Z : x < y }  // Z - set of all integers.  
   All the relations R from A to B
+
+### Reflexive Relation
+A relation 'R' on a set 'A' is said to be reflexive if
+(xRx) ∀ x∈A
