@@ -101,18 +101,18 @@ double& Vector::operator[] (int i) const {
 }
 
 
-Vector operator+(const Vector& a, const Vector& b) {
-    if (a.size()!=b.size())
-        // throw Vector_size_mismatch{"vector size is not matching"};
-        throw std::length_error{"vector length mismatch"};
-
-    Vector res(a.size());
-
-    for (int i=0;i!=a.size();++i)
-        res[i]=a[i]+b[i];
-
-    return res;
-}
+// Vector operator+(const Vector& a, const Vector& b) {
+//     if (a.size()!=b.size())
+//         // throw Vector_size_mismatch{"vector size is not matching"};
+//         throw std::length_error{"vector length mismatch"};
+// 
+//     Vector res(a.size());
+// 
+//     for (int i=0;i!=a.size();++i)
+//         res[i]=a[i]+b[i];
+// 
+//     return res;
+// }
 
 
 // Other functions
