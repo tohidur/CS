@@ -1,6 +1,23 @@
 #include<iostream>
+#include<vector>
+#include<thread>
 
 #include "Vector.h"
+
+Vector f() {
+    Vector x(1000);
+    Vector y(1000);
+    Vector z(1000);
+    z = x;
+    return z;
+}
+
+Vector g() {
+    std::cout << "inside g" << "\n \n";
+    Vector r = f();
+    std::cout << "returning g" << "\n \n";
+    return r;
+}
 
 int main()
 {
@@ -20,5 +37,7 @@ int main()
     //     // std::cout << v4[i] << "--" << "v3[i]" << '\n';
     //    std::cout << v4[i] << "--" << v3[i] << '\n';
     // }
+
+    Vector l = g();
 }
 
